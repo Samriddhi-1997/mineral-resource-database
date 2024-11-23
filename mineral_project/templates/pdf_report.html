@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mineral Resource Report</title>
+</head>
+<body>
+    <h1>Mineral Resource Report</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Reserve Size</th>
+            <th>Grade</th>
+            <th>Extraction Cost</th>
+            <th>Applications</th>
+        </tr>
+        {% for mineral in minerals %}
+        <tr>
+            <td>{{ mineral.name }}</td>
+            <td>{{ mineral.location }}</td>
+            <td>{{ mineral.reserve_size }}</td>
+            <td>{{ mineral.grade }}</td>
+            <td>{{ mineral.extraction_cost }}</td>
+            <td>{{ mineral.applications }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

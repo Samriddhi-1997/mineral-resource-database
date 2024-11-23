@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mineral Resource Dashboard</title>
+    <!-- Link to your custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Load Plotly.js for charting -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    
+    <h1>Mineral Resource Database</h1>
+
+    <div id="visualizations"> 
+        <!-- The chart will render here -->
+     </div> 
+    
+
+    <!-- Button to trigger report generation -->
+     
+    <button onclick="generateReport()">Generate PDF Report</button>
+
+    <script src="/static/app.js"></script>
+    <button onclick="getAISuggestions()">Get AI Sustainability Score</button>
+<div id="ai-score"></div>
+
+<script>
+    function getAISuggestions() {
+        fetch('/ai_suggestions')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ai-score').innerHTML = 'Predicted Sustainability Score: ' + data.sustainability_score;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+
+</body>
+</html>
