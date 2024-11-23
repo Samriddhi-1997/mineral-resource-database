@@ -1,0 +1,32 @@
+<h1>Mineral Dashboard</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Reserve Size</th>
+        <th>Extraction Cost</th>
+    </tr>
+    {% for mineral in minerals %}
+    <tr>
+        <td>{{ mineral.name }}</td>
+        <td>{{ mineral.location }}</td>
+        <td>{{ mineral.reserve_size }}</td>
+        <td>{{ mineral.extraction_cost }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div id="chart">
+    {{ chart|safe }}
+</div>
+<div id="cost-reserve-chart">
+    {{ cost_reserve_chart|safe }}
+</div>
+<div id="predictions">
+    <h2>Future Predictions</h2>
+    <ul>
+        {% for year, reserve in predictions.items() %}
+        <li>Year {{ year }}: {{ reserve }} tons</li>
+        {% endfor %}
+    </ul>
+</div>
+
