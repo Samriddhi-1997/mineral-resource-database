@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minerals</title>
+    <style>
+        /* General body styling with background image */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: url('https://api.deepai.org/job-view-file/cadc8ed9-5c96-4554-94d4-b7844311e69f/outputs/output.jpg?art-image=true'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff; /* White text for better contrast */
+        }
+
+        /* Styling for the main heading */
+        h1 {
+            color: #ffeb3b; /* Bright yellow color */
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Styling for subheading */
+        h3 {
+            color: #e0e0e0;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the form */
+        form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Styling for the input box */
+        input[type="text"] {
+            width: 250px;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #ffeb3b;
+        }
+
+        /* Styling for the search button */
+        button {
+            background-color: #ff4500;
+            color: white;
+            font-size: 1em;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e63900;
+        }
+
+        /* Center alignment for the content */
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for better text visibility */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><strong>Welcome to Mineral Database!</strong></h1>
+
+        <!-- Search Form -->
+        <form method="GET" action="/minerals">
+            <button type="submit">List</button>
+        </form>
+    </div>
+</body>
+</html>

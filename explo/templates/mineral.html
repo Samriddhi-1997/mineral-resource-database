@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minerals List</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://example.com/background-image.jpg'); /* Add background image URL */
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main container */
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background for better readability */
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #ffeb3b; /* Bright yellow for the heading */
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        /* Search form styling */
+        form {
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 250px;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #ffeb3b; /* Yellow border when focused */
+        }
+
+        button {
+            background-color: #ff4500;
+            color: white;
+            font-size: 1em;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e63900;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3e8e41; /* Green background for header */
+            color: white;
+            font-size: 1.1em;
+        }
+
+        td {
+            background-color: #f9f9f9; /* Light gray for table rows */
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f1f1f1; /* Alternate row color */
+        }
+
+        tr:hover td {
+            background-color: #ddd; /* Highlight on hover */
+        }
+
+        /* No data available styling */
+        h4 {
+            color: #ff4500;
+            font-size: 1.5em;
+        }
+
+        p {
+            color: #e0e0e0;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Minerals Data and Environmental Impact</h1>
+        <h2>Search by name or location</h2>
+
+        <form method="GET" action="/minerals">
+            <input type="text" name="query" value="{{ search_query }}" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if minerals %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Reserve Size</th>
+                        <th>Grade</th>
+                        <th>Extraction Cost</th>
+                        <th>Applications</th>
+                        <th>Carbon Emissions</th>
+                        <th>Water Usage</th>
+                        <th>Land Degradation</th>
+                        <th>Energy Consumption</th>
+                        <th>Rehabilitation Efforts</th>
+                        <th>Sustainability Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mineral in minerals %}
+                    <tr>
+                        <td>{{ mineral.name }}</td>
+                        <td>{{ mineral.location }}</td>
+                        <td>{{ mineral.reserve_size }}</td>
+                        <td>{{ mineral.grade }}</td>
+                        <td>{{ mineral.extraction_cost }}</td>
+                        <td>{{ mineral.applications }}</td>
+                        <td>{{ mineral.carbon_emissions }}</td>
+                        <td>{{ mineral.water_usage }}</td>
+                        <td>{{ mineral.land_degradation }}</td>
+                        <td>{{ mineral.energy_consumption }}</td>
+                        <td>{{ mineral.rehabilitation_efforts }}</td>
+                        <td>{{ mineral.sustainability_score }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h4>No data available</h4>
+        {% endif %}
+    </div>
+</body>
+</html>
