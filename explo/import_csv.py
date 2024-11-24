@@ -50,17 +50,66 @@ cursor.execute('''
         land_degradation FLOAT,
         energy_consumption FLOAT,
         rehabilitation_efforts INTEGER,
-        sustainability_score INTEGER,
+        sustainability_score FLOAT,
         FOREIGN KEY (mineral_id) REFERENCES minerals(id)
     );
 ''')
-
+def calculate_sustainability_ratio(carbon_emissions, water_usage, land_degradation, energy_consumption, rehabilitation_efforts, extraction_cost):
+    # Calculate the sustainability ratio using the given formula
+    sustainability_ratio = (rehabilitation_efforts - (carbon_emissions + water_usage + land_degradation + energy_consumption)) / (rehabilitation_efforts + extraction_cost%1000)
+    return sustainability_ratio
+# Insert data into the environmental_impact table
 # Insert data into the environmental_impact table
 for _, row in impact_data.iterrows():
+    # Extract values from the current row
+    carbon_emissions = row['carbon_emissions']
+    water_usage = row['water_usage']
+    land_degradation = row['land_degradation']
+    energy_consumption = row['energy_consumption']
+    rehabilitation_efforts = row['rehabilitation_efforts']
+
+    # Fetch the extraction cost from the minerals table using the mineral_id
+    # Fetch the extraction cost from the minerals table using the mineral_id
+cursor.execute('''
+    SELECT extraction_cost FROM minerals WHERE id = ?
+''', (row['mineral_id'],))
+result = cursor.fetchone()
+
+# Remove commas and convert to float
+if result and result[0] is not None:
+    try:
+        extraction_cost = float(result[0].replace(',', ''))  # Remove commas before converting to float
+    except ValueError:
+        extraction_cost = 0.0  # Default to 0.0 if conversion fails
+else:
+    extraction_cost = 0.0  # Default to 0.0 if None
+
+    # Calculate sustainability ratio
+    try:
+        sustainability_score = calculate_sustainability_ratio(
+            carbon_emissions, 
+            water_usage, 
+            land_degradation, 
+            energy_consumption, 
+            rehabilitation_efforts, 
+            extraction_cost
+        )
+    except ZeroDivisionError:
+        sustainability_score = 0  # Handle division by zero gracefully
+
+    # Insert data into the environmental_impact table
     cursor.execute('''
-        INSERT INTO environmental_impact (mineral_id, carbon_emissions, water_usage, land_degradation, energy_consumption, rehabilitation_efforts)
-        VALUES (?, ?, ?, ?, ?, ?)
-    ''', (row['mineral_id'], row['carbon_emissions'], row['water_usage'], row['land_degradation'], row['energy_consumption'], row['rehabilitation_efforts']))
+        INSERT INTO environmental_impact (mineral_id, carbon_emissions, water_usage, land_degradation, energy_consumption, rehabilitation_efforts, sustainability_score)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ''', (
+        row['mineral_id'], 
+        carbon_emissions, 
+        water_usage, 
+        land_degradation, 
+        energy_consumption, 
+        rehabilitation_efforts,
+        sustainability_score
+    ))
 
 # Commit changes and close the connection
 conn.commit()
