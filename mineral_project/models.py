@@ -6,8 +6,6 @@ class Mineral(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     location = db.Column(db.String(100))
-    latitude = db.Column(db.Float, nullable=False)
-    longitude = db.Column(db.Float, nullable=False)
     reserve_size = db.Column(db.Float)
     grade = db.Column(db.Float)
     extraction_cost = db.Column(db.Float)

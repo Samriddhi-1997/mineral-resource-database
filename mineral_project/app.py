@@ -16,6 +16,7 @@ import plotly.graph_objs as go
 from plotly.offline import plot
 from werkzeug.utils import secure_filename
 import os
+import mineral.csv
 
 # Initialize app
 app = Flask(__name__)
