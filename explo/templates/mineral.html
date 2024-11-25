@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minerals List</title>
     <style>
-        /* Basic reset */
         * {
             margin: 0;
             padding: 0;
@@ -26,13 +25,13 @@
         .container {
             text-align: center;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background for better readability */
+            background-color: rgba(0, 0, 0, 0.6);
             margin-top: 30px;
             border-radius: 10px;
         }
 
         h1 {
-            color: #ffeb3b; /* Bright yellow for the heading */
+            color: #ffeb3b;
             font-size: 2.5em;
             margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
@@ -44,7 +43,6 @@
             margin-bottom: 20px;
         }
 
-        /* Search form styling */
         form {
             margin-bottom: 30px;
         }
@@ -60,7 +58,7 @@
         }
 
         input[type="text"]:focus {
-            border-color: #ffeb3b; /* Yellow border when focused */
+            border-color: #ffeb3b;
         }
 
         button {
@@ -78,7 +76,6 @@
             background-color: #e63900;
         }
 
-        /* Table Styling */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -91,24 +88,24 @@
         }
 
         th {
-            background-color: #3e8e41; /* Green background for header */
+            background-color: #3e8e41; 
             color: white;
             font-size: 1.1em;
         }
 
         td {
-            background-color: #f9f9f9; /* Light gray for table rows */
+            background-color: #f9f9f9;         
         }
 
         tr:nth-child(even) td {
-            background-color: #f1f1f1; /* Alternate row color */
+            background-color: #f1f1f1;         
         }
 
         tr:hover td {
-            background-color: #ddd; /* Highlight on hover */
+            background-color: #ddd;        
         }
 
-        /* No data available styling */
+        
         h4 {
             color: #ff4500;
             font-size: 1.5em;
@@ -135,17 +132,17 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Location</th>
-                        <th>Reserve Size</th>
-                        <th>Grade</th>
-                        <th>Extraction Cost</th>
+                        <th>Location(One of the major site)</th>
+                        <th>Reserve Size(in tons)</th>
+                        <th>Grade(%)</th>
+                        <th>Extraction Cost(INR)</th>
                         <th>Applications</th>
-                        <th>Carbon Emissions</th>
-                        <th>Water Usage</th>
-                        <th>Land Degradation</th>
-                        <th>Energy Consumption</th>
+                        <th>Carbon Emissions(kg/ton)</th>
+                        <th>Water Usage(litre/ton)</th>
+                        <th>Land Degradation(hectares)</th>
+                        <th>Energy Consumption(MWh/ton)</th>
                         <th>Rehabilitation Efforts</th>
-                        <th>Sustainability Score</th>
+                        <th><strong>Sustainability Score(calculated)</strong></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -171,6 +168,31 @@
             <h4>No data available</h4>
             <p>No data available.</p>
         {% endif %}
+        <div class="link-container">
+            <a href="https://mines.gov.in/webportal/home" target="_blank" class="new-page-link">
+                For more information
+            </a>    
     </div>
+    <style>
+        .link-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .new-page-link {
+            display: inline-block;
+            background-color: #3e8e41;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .new-page-link:hover {
+            background-color: #2f6d30;
+        }
+    </style>
 </body>
 </html>

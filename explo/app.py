@@ -3,11 +3,9 @@ import sqlite3
 
 app = Flask(__name__)
 
-# Home route
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/minerals', methods=['GET', 'POST'])
 def minerals():
@@ -16,7 +14,6 @@ def minerals():
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    # Base query
     query = """
     SELECT minerals.*, environmental_impact.*
     FROM minerals
@@ -24,13 +21,11 @@ def minerals():
     """
     params = []
 
-    # Add filtering condition if search_query is provided
     if search_query:
         query += " WHERE name LIKE ? OR location LIKE ? OR applications LIKE ?"
         like_pattern = f"%{search_query}%"
         params = [like_pattern, like_pattern, like_pattern]
 
-    # Execute the query
     cursor.execute(query, params)
     rows = cursor.fetchall()
     conn.close()
